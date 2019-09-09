@@ -28,9 +28,11 @@
                     <i class="fas fa-lock mr-2"></i>Logout
                 </a>
             <cfelse>
-                <a class="btn btn-dark w-100 rounded-0" href="/_login.cfm">
-                    <i class="fab fa-google mr-2"></i>Login
-                </a>
+                <cfif Config.Google.IsEnabled eq true>
+                    <a class="btn btn-dark w-100 rounded-0" href="/_login.cfm">
+                        <i class="fab fa-google mr-2"></i>Login
+                    </a>
+                </cfif> 
             </cfif>
         </div>           
     </div>

@@ -1,11 +1,5 @@
 component {
-	Config = CreateObject("Config");
-
-    this.SessionManagement  = Config.SessionManagement;
-    this.Name               = Config.Name;
-	this.DataSource         = Config.DataSource;
-    this.ApplicationTimeout = Config.ApplicationTimeout;
-    this.SessionTimeout     = Config.SessionTimeout;
+	Config = CreateObject("setup.Config");
 
     function OnApplicationStart() {
 	    return true;

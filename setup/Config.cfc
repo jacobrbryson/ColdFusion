@@ -1,10 +1,9 @@
 component{
-    this.IsProd                 = false;
     this.Version                = "v1";
-    this.Name                   = "Example";
+    this.Name                   = "App Setup";
     this.DataSource             = "";
-    this.BaseWebURL             = "/";
-    this.AssetsURL              = "/";
+    this.BaseWebURL             = "/setup";
+    this.AssetsURL              = "/setup/web";
     this.Theme.Color            = "##FFF";
 
     this.SessionManagement      = true;
@@ -12,8 +11,16 @@ component{
     this.SessionTimeout         = CreateTimeSpan(7, 0, 0, 0); //7 days
     this.SessionCreated         = DateTimeFormat(now(),"yyyy-mm-dd HH:nn:ss");
 
-    this.Google.IsEnabled       = false;
+    this.Google.IsEnabled       = false; 
     this.Google.ClientID        = "<GOOGLE CLIENT_ID>";
     this.Google.ClientSecret    = "<GOOGLE CLIENT_IDSECRET>";
     this.Google.AuthEndPoint    = "_auth.cfm";
+
+    this.sqlTables = [
+        'Roles',
+        'Users',
+        'Heartbeats',
+        'LogActions',
+        'Logs'
+    ];
 }

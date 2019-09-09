@@ -2,8 +2,8 @@
 	<cfinclude template="nav_right.cfm"/>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow">
-			<a class="navbar-brand nav-link mr-auto" href="/">
-				<i class="fas #Icon# mr-2"></i>&nbsp;#Application.ApplicationName#
+			<a class="navbar-brand nav-link mr-auto" href="#Config.BaseWebURL#">
+				&nbsp;#Config.Name#
 			</a>
 			<div class="sidemenu-toggle ml-auto">
 				<cfif isDefined("Session.User.Avatar") and Session.User.Avatar neq "">
