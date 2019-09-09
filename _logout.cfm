@@ -8,7 +8,7 @@
         Log.Action.setID(2);//Logged out.
         Log.setTargetID(Session.User.ID)
             .setNote(Session.User.FirstName & " " & Session.User.LastName);
-        LogController.addLog(Log);
+        LogController.Add(Log);
     }
 
     StructClear(Session);

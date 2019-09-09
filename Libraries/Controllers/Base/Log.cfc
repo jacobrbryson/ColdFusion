@@ -7,13 +7,13 @@ component {
             INSERT INTO Logs (
                 IPv4,
                 UserID,
-                ActionID,
+                LogActionID,
                 TargetID,
                 Note
             )VALUES(
                 :IPv4,
                 :UserID,
-                :ActionID,
+                :LogActionID,
                 :TargetID,
                 :Note
             )
@@ -100,7 +100,7 @@ component {
             CFSQLTYPE="CF_SQL_INTEGER"
         );
         query.addParam(
-            name="ActionID",
+            name="LogActionID",
             value=Log.Action.ID,
             CFSQLTYPE="CF_SQL_INTEGER"
         );
@@ -122,7 +122,7 @@ component {
                 l.IPv4,
                 l.Created,
                 l.UserID,
-                l.ActionID,
+                l.LogActionID,
                 l.TargetID,
                 l.Note,
                 la.Description as LogType,
@@ -133,7 +133,7 @@ component {
                 u.LastName
             FROM Logs l
             INNER JOIN LogActions la
-            ON l.ActionID = la.ID
+            ON l.LogActionID = la.ID
             INNER JOIN LogTypes lt
             ON ls.LogTypeID = lt.ID
             LEFT JOIN Users u
@@ -153,7 +153,7 @@ component {
         Log.User.setID(r.UserID);
 
         Log.LogAction
-            .setID(r.ActionID)
+            .setID(r.LogActionID)
             .setName(r.LogType)
             .setTargetURL(r.TargetURL);
 

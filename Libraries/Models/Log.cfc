@@ -4,6 +4,7 @@ component{
     this.IPv4       = CGI.REMOTE_ADDR;
     this.User       = CreateObject("User");
     this.Type       = CreateObject("LogType");
+    this.Action     = CreateObject("LogAction");
     this.TargetID   = 0;
     this.Note       = "";
 

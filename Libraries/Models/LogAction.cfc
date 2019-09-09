@@ -4,15 +4,15 @@ component{
     this.LogType    = CreateObject("LogType");
     this.TargetURL  = "";
 
-    public LogType function setID(Required Numeric ID){
+    public LogAction function setID(Required Numeric ID){
         this.ID = ID;
         return this;
     }
-    public LogType function setName(Required String Name){
+    public LogAction function setName(Required String Name){
         this.Name = Name;
         return this;
     }
-    public LogType function setTargetURL(Required String TargetURL){
+    public LogAction function setTargetURL(Required String TargetURL){
         this.TargetURL = TargetURL;
         return this;
     }

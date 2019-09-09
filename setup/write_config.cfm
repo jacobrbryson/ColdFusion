@@ -22,7 +22,7 @@
         Content &=  "
     this.ApplicationTimeout     = " & (IsDefined("FORM._app_timeout") && IsNumeric(FORM._app_timeout) ? 'CreateTimeSpan(0, 0, ' & FORM._app_timeout & ', 0);' : 'CreateTimeSpan(30, 0, 0, 0); //30 days');
         Content &=  "
-    this.ApplicationTimeout     = " & (IsDefined("FORM._app_timeout") && IsNumeric(FORM._session_timeout) ? 'CreateTimeSpan(0, 0, ' & FORM._session_timeout & ', 0);' : 'CreateTimeSpan(7, 0, 0, 0); //7 days');
+    this.SessionTimeout     = " & (IsDefined("FORM._app_timeout") && IsNumeric(FORM._session_timeout) ? 'CreateTimeSpan(0, 0, ' & FORM._session_timeout & ', 0);' : 'CreateTimeSpan(7, 0, 0, 0); //7 days');
         Content &=  "
     this.SessionCreated         = DateTimeFormat(now(),'yyyy-mm-dd HH:nn:ss');";
 

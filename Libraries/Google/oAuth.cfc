@@ -2,7 +2,7 @@ component{
     Config = CreateObject("Config");
     this.client_id     = Config.Google.ClientID;
     this.client_secret = Config.Google.ClientSecret;
-    this.redirect_uri  = Config.BaseWebURL & Config.Google.AuthEndPoint;
+    this.redirect_uri  = Config.BaseWebURL & "/" & Config.Google.AuthEndPoint;
 
     public function getAuthorizationUrl(){
         auth_url = "https://accounts.google.com/o/oauth2/v2/auth?scope=openid%20email%20profile" 

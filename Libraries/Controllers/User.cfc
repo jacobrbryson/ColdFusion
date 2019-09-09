@@ -21,7 +21,7 @@ component extends="Base.User"{
         Log.Action.setID(1);//Logged in.
         Log.setTargetID(User.ID)
             .setNote(User.FirstName & " " & User.LastName);
-        LogController.addLog(Log);
+        LogController.Add(Log);
 
         return User;
     }
@@ -56,7 +56,7 @@ component extends="Base.User"{
         Log.Action.setID(ActionID);//User Object Added/Updated
         Log.setTargetID(User.ID);
         Log.setNote(User.FirstName & " " & User.LastName);
-        LogController.AddLog(Log);
+        LogController.Add(Log);
 
         if(Session.User.ID eq User.ID){
             Session.User = User;

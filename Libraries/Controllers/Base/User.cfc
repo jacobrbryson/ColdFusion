@@ -83,7 +83,7 @@ component extends="_BaseController"{
     public User function GetObject(filters = [], values = []){
         query = new Query();
         query.setDataSource(Config.Datasource);
-        sqlString = "SELECT TOP 1 " & buildSelect();
+        sqlString = "SELECT " & buildSelect();
         for(i=1;i<=arrayLen(filters);i++){
             sqlString = sqlString & " AND u." & filters[i] & " = :" & filters[i];
             query.addParam(
@@ -170,6 +170,16 @@ component extends="_BaseController"{
             CFSQLTYPE="CF_SQL_VARCHAR"
         );
         query.addParam(
+            name="Email",
+            value=User.Email,
+            CFSQLTYPE="CF_SQL_VARCHAR"
+        );
+        query.addParam(
+            name="Phone",
+            value=User.Phone,
+            CFSQLTYPE="CF_SQL_VARCHAR"
+        );
+        query.addParam(
             name="Birthday",
             value=User.Birthday,
             CFSQLTYPE="CF_SQL_VARCHAR"
@@ -178,6 +188,7 @@ component extends="_BaseController"{
             name="IsEnabled",
             value=User.IsEnabled,
             CFSQLTYPE="CF_SQL_BIT"
+        );
         query.addParam(
             name="RoleID",
             value=User.Role.ID,
@@ -191,7 +202,6 @@ component extends="_BaseController"{
                 u.Created,
                 u.UUID,
                 u.GoogleID,
-                u.NickName,
                 u.FirstName,
                 u.LastName,
                 u.Phone,
@@ -201,14 +211,7 @@ component extends="_BaseController"{
                 u.Birthday,
                 u.IsEnabled,
                 u.RoleID,
-                r.Name as Role,
-                (
-                    SELECT 
-                        MAX(h.Tick) 
-                    FROM Heartbeat h
-                    WHERE UserID = u.ID 
-                    AND h.Tick > DATEADD(minute, -1, GETDATE())
-                ) as online
+                r.Name as Role
             FROM Users u
             INNER JOIN Roles r
             ON u.RoleID = r.ID
