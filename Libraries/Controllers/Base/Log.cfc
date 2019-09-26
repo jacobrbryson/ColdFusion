@@ -3,21 +3,27 @@ component {
     public Log function Add(Log Log){
         query = new Query();
         query.setDataSource(Config.Datasource);
-        query.setSQL("
-            INSERT INTO Logs (
+        sqlString = "INSERT INTO Logs (";
+        sqlString &= Log.User.ID neq 0 ? "UserID," : "";
+        sqlString &= "
                 IPv4,
-                UserID,
                 LogActionID,
                 TargetID,
                 Note
-            )VALUES(
+        ";
+        sqlString &= ")VALUES(";
+        sqlString &= Log.User.ID neq 0 ? ":UserID," : "";
+        sqlString &= "
                 :IPv4,
-                :UserID,
                 :LogActionID,
                 :TargetID,
                 :Note
-            )
-        ");
+        ";
+        sqlString &= "
+            );
+        ";
+
+        query.setSQL(sqlString);
 
         addQueryParams(Log);
 
@@ -125,17 +131,18 @@ component {
                 l.LogActionID,
                 l.TargetID,
                 l.Note,
-                la.Description as LogType,
+                la.Name as LogAction,
                 la.TargetURL,
                 la.LogTypeID,
                 lt.Name as LogType,
                 u.FirstName,
-                u.LastName
+                u.LastName,
+                u.Email
             FROM Logs l
             INNER JOIN LogActions la
             ON l.LogActionID = la.ID
             INNER JOIN LogTypes lt
-            ON ls.LogTypeID = lt.ID
+            ON la.LogTypeID = lt.ID
             LEFT JOIN Users u
             ON l.UserID = u.ID
             WHERE l.ID IS NOT NULL";
